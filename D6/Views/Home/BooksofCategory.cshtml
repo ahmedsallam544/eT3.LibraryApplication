@@ -15,10 +15,11 @@
         <img src="~/images/templatemo_image_01.jpg" />
         <div class="product_info">
             <p>Publication in @item.Publication_year </p>
-            <form asp-action="BorrowBook" asp-route-id="@item.ID">
-                <button class="buy_now_button"><a asp-for="@BorroweredBook">Borrow</a></button>
-            </form>
-            <button class="detail_button"><a>Detail</a></button>
+            <button class="buy_now_button">
+                <a asp-action="BorrowBook" asp-route-Book_id="@item.ID">Borrow</a>
+            </button>                           
+            <button class="detail_button"><a asp-action="Details" asp-route-book_id="@item.ID">Detail</a></button>
+
             @*<h3></h3>*@
         </div>
         <div class="cleaner">&nbsp;</div>

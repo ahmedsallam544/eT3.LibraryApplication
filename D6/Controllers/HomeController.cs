@@ -25,13 +25,9 @@ namespace D6.Controllers
             UserManagers = usrmgr;
 
         }
-
-
-
-        // GET: Products
+        // GET: 
         public IActionResult Index()
-        {
-            
+        {           
 
             ViewBag.catgories = Context.Categories.ToList();
             ViewBag.books = Context.Books.ToList();
@@ -90,7 +86,9 @@ namespace D6.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Context.Books.SingleOrDefault(p => p.ID == Book_id).No_Of_Copies_Current < Context.Books.SingleOrDefault(p => p.ID == Book_id).No_Of_Copies_Actual)
+                var current = Context.Books.SingleOrDefault(p => p.ID == Book_id).No_Of_Copies_Current;
+                var actual = Context.Books.SingleOrDefault(p => p.ID == Book_id).No_Of_Copies_Actual;
+                if ( current < actual )
                     Context.Books.SingleOrDefault(p => p.ID == Book_id).No_Of_Copies_Current++;
                 else
                     return NotFound();
@@ -102,7 +100,7 @@ namespace D6.Controllers
                 
 
             }
-            return View("Borrowed");
+            return RedirectToAction(nameof(BorrowedBooks));
         }
         public IActionResult BorrowedBooks()
         {
@@ -110,8 +108,10 @@ namespace D6.Controllers
             ViewBag.BooksBorrowed = (from o in Context.Borrowers
                                      join d in Context.Books
                                      on o.Book_ID equals d.ID
-                                     where o.User_ID == UserManagers.GetUserId(User)
-                                     select d).ToList();
+                                     where o.User_ID == UserManagers.GetUserId(User) 
+                                     && ( o.Actual_Return_date == DateTime.MinValue 
+                                     || o.Actual_Return_date < DateTime.Now )
+                                      select d).ToList();
 
 
             return View("Borrowed");

@@ -13,11 +13,11 @@
         <img src="~/images/templatemo_image_01.jpg" />
         <div class="product_info">
             <p>Publication in @item.Publication_year </p>
-            <form asp-action="ReturnBook" asp-route-id="@item.ID">
+            <form asp-action="ReturnBook" asp-route-Book_id="@item.ID">
                 <button class="buy_now_button"><a>Return Book</a></button>
             </form>
-            <button class="detail_button"><a>Detail</a></button>
-        
+     <button class="detail_button"><a asp-action="Details" asp-route-book_id="@item.ID">Detail</a></button>
+
         </div>
         <div class="cleaner">&nbsp;</div>
     </div>

@@ -37,17 +37,13 @@ namespace D6
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-           /* services.AddIdentity<ApplicationUser, IdentityRole>()
-            .AddEntityFrameworkStores<MyContext>();
-            */
-          //  services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/LogIn");
+          
 
             services.AddDbContext<MyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("D6Context"))); // important
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<Category>(); // Ya Raby
             services.AddTransient<Book_Details>();
             services.AddTransient<Borrower_Details>();
-            services.AddTransient<User_Details>();
 
         }
 
