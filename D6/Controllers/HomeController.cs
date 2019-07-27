@@ -110,7 +110,7 @@ namespace D6.Controllers
                                      on o.Book_ID equals d.ID
                                      where o.User_ID == UserManagers.GetUserId(User) 
                                      && ( o.Actual_Return_date == DateTime.MinValue 
-                                     || o.Actual_Return_date < DateTime.Now )
+                                     || o.Actual_Return_date >= DateTime.Now )
                                       select d).ToList();
 
 
