@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Borrowed";
+}
+
+@foreach (var item in ViewBag.BooksBorrowed)
+{
+    <div class="templatemo_product_box">
+        <h1>
+            @item.Book_Title
+            <span>( In @item.Language )</span>
+        </h1>
+        <img src="~/images/templatemo_image_01.jpg" />
+        <div class="product_info">
+            <p>Publication in @item.Publication_year </p>
+            <form asp-action="ReturnBook" asp-route-id="@item.ID">
+                <button class="buy_now_button"><a>Return Book</a></button>
+            </form>
+            <button class="detail_button"><a>Detail</a></button>
+        
+        </div>
+        <div class="cleaner">&nbsp;</div>
+    </div>
+
+    <div class="cleaner_with_width">&nbsp;</div>
+
+}

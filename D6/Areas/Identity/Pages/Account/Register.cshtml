@@ -1,0 +1,144 @@
+﻿@page
+@model RegisterModel
+@{
+    Layout = null;
+    //ViewData["Title"] = "Register";
+}
+
+<h2>@ViewData["Title"]</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>REGISTERATION</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/favicon.ico" />
+    <!--===============================================================================================-->
+
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/css/font-awesome.min.css">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/css/animate.css">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/css/hamburgers.min.css">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/css/animsition.min.css">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/css/select2.min.css">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/css/daterangepicker.css">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/css/utilRE.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/mainRE.css">
+
+    <!--===============================================================================================-->
+</head>
+<body>
+
+
+    <div class="container-contact100">
+        <div class="wrap-contact100">
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="contact100-form validate-form">
+                <span class="contact100-form-title">
+                    Registeration
+                </span>
+ 
+
+                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <span class="label-input100">Email</span>
+                    <input asp-for="Input.Email" class="input100" type="text" placeholder="Enter your email addess">
+                    <span asp-validation-for="Input.Email" class="focus-input100"></span>
+                </div>
+
+            
+                <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+                    <span class="symbol-input100">
+                        <i class="fa fa-lock"></i>
+                    </span>
+                    <input asp-for="Input.Password" class="input100" type="password" placeholder="Password">
+                    <span asp-validation-for="Input.Password" class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+                    <span class="symbol-input100">
+                        <i class="fa fa-lock"></i>
+                    </span>
+                    <input asp-for="Input.ConfirmPassword" class="input100" type="password" placeholder="ConfirmPassword">
+                    <span asp-validation-for="Input.ConfirmPassword" class="focus-input100"></span>
+                </div>
+ 
+
+                <div class="container-contact100-form-btn">
+                    <div class="wrap-contact100-form-btn">
+                        <div class="contact100-form-bgbtn"></div>
+                        <button type="submit" class="contact100-form-btn">
+                            <span>
+                                Register
+                                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="~/js/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/js/animsition.min.js"></script>
+
+    <!--===============================================================================================-->
+    <script src="~/js/popper.js"></script>
+
+    <script src="~/js/bootstrap.min.js"></script>
+
+    <!--===============================================================================================-->
+    <script src="~/js/select2.min.js"></script>
+
+    <script>
+        $(".selection-2").select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $('#dropDownSelect1')
+        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/js/moment.min.js"></script>
+
+    <script src="~/js/daterangepicker.js"></script>
+
+    <!--===============================================================================================-->
+    <script src="~/js/countdowntime.js"></script>
+
+    <!--===============================================================================================-->
+    <script src="~/js/mainRE.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+
+</body>
+</html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
