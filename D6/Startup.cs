@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-//using D6.Data;
 using D6.Models;
 using eT3.LibraryApplication.Areas.Identity.Data;
 using eT3.LibraryApplication.Models;
