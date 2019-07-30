@@ -11,9 +11,11 @@ using Microsoft.AspNetCore.Http;
 using eT3.LibraryApplication.Models;
 using eT3.LibraryApplication.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace D6.Controllers
 {
+    [Authorize]  // To Start form Login Page
     public class HomeController : Controller
     {
         private readonly MyContext Context ;

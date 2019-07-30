@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using D6.Models;
 using eT3.LibraryApplication.Areas.Identity.Data;
 using eT3.LibraryApplication.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,11 +37,23 @@ namespace D6
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-          
+
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
 
             services.AddDbContext<MyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("D6Context"))); // important
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddTransient<Category>(); // Ya Raby
+            //ERROR
+           //services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<MyContext>().AddDefaultUI();
+       // services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<MyContext>();
+            
+   services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddTransient<Category>(); // 
             services.AddTransient<Book_Details>();
             services.AddTransient<Borrower_Details>();
 
@@ -52,6 +65,7 @@ namespace D6
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -61,10 +75,13 @@ namespace D6
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            app.UseAuthentication();
 
+             app.UseAuthentication();
+            
             app.UseMvc(routes =>
             {
+
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
